@@ -38,7 +38,7 @@ const isValidPincode = (pincode) => {
 const isValidSize = (Size) => {
     let correctSize = ["S", "XS", "M", "X", "L", "XXL", "XL"]
     return (correctSize.includes(Size))
-  }
+}
 
 const isValidPrice = (price) => {
     return /^\d{0,8}[.]?\d{1,4}$/.test(price)

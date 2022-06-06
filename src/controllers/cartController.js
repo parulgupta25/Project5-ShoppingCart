@@ -17,9 +17,7 @@ const createCart = async function (req, res) {
         if (!isValidObjectId(productId)) return res.status(400).send({ status: false, message: "invalid product Id.." })
         const product = await productModel.findOne({ _id: productId, isDeleted: false })
         if (!product) return res.status(400).send({ status: false, message: "product not found or may be deleted..." })
-
         const productPrice = product.price
-
         // -------------CHECKING cart is already present for  user or not------------
         const isCartExist = await cartModel.findOne({ userId: userId })
 

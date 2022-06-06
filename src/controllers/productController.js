@@ -90,7 +90,6 @@ const getProductByQuery = async (req, res) => {
             filterQuery['price'] = { $lte: priceLessThan }
         }
         if (priceSort) {
-            console.log
             if (priceSort != 1 && priceSort != -1)
                 return res.status(400).send({ status: false, message: "Please provide only 1 for ascending or -1 for descending" })
             if (priceSort == 1) {
@@ -157,8 +156,8 @@ const updateProduct = async (req, res) => {
             if (!isValidPrice(price)) return res.status(400).send({ status: false, message: "price is invalid" })
         if (availableSizes) {
             if (!isValid(availableSizes)) return res.status(400).send({ status: false, message: "availableSizes Should be Valid" })
-            availableSizes = availableSizes.split(",").map(x => x.trim())
-            if (availableSizes.map(x => isValidSize(x)).filter(x => x === false).length !== 0) return res.status(400).send({ status: false, message: "Size Should be Among  S,XS,M,X,L,XXL,XL" })
+            availableSizes = availableSizes.split(",").map(x => x.trim()) 
+            if (availableSizes.map(x => isValidSize(x)).filter(x => x === false).length > 0) return res.status(400).send({ status: false, message: "Size Should be Among  S,XS,M,X,L,XXL,XL" })
         }
         if (style)
             if (!isValid(style)) return res.status(400).send({ status: false, message: "style is invalid" })
